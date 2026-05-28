@@ -63,30 +63,8 @@ This project aims to:
 
 ---
 
-# Author
 
-Akmeiir Amirseit
 
-Statistics and Data Science Student
-
-# 🍽️ Recipe Website Analysis
-### *What makes a recipe go viral?*
-
-> A data science project analyzing **10,000+ recipes** from [eda.rambler.ru](https://eda.rambler.ru) to uncover the hidden patterns behind likes, saves, and culinary popularity.
-
-**Team:** Dana · Akmeiir · Fazilat · Feruza
-
----
-
-## 📌 Overview
-
-We scraped, cleaned, and analyzed a real-world recipe dataset to answer one central question:
-
-> **"What drives people to like and save recipes online?"**
-
-The answer turned out to involve comfort food psychology, cultural identity, ingredient complexity, and the neuroscience of recipe titles.
-
----
 
 ## 📂 Project Structure
 
@@ -212,15 +190,15 @@ Built using **SentenceTransformer** to understand search *intent*, not just keyw
 
 | Query (RU) | Top Score | Result |
 |------------|-----------|--------|
-| ПП завтрак с яйцами | 0.82 | ✅ Excellent |
-| быстрый ужин с курицей | 0.81 | ✅ Perfect |
-| завтрак для детей | 0.72 | ✅ Strong |
+| ПП завтрак с яйцами | 0.82 |  Excellent |
+| быстрый ужин с курицей | 0.81 | Perfect |
+| завтрак для детей | 0.72 |  Strong |
 
 **Lesson learned:** AI is only as good as the diversity of the training data — the model revealed a data gap weighted toward drinks/bar menus.
 
 ---
 
-## 💡 Recommendations
+##  Recommendations
 
 **For Content Creators & Chefs:**
 - Use the **8-ingredient rule** — simplicity converts
@@ -234,7 +212,7 @@ Built using **SentenceTransformer** to understand search *intent*, not just keyw
 
 ---
 
-## 📊 Visualizations
+##  Visualizations
 
 The notebook includes:
 - Distribution of avg. carbs & fats by cuisine
@@ -248,6 +226,11 @@ The notebook includes:
 
 ---
 
+# Author
+
+Akmeiir Amirseit
+
+Statistics and Data Science Student
 
 
 
