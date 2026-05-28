@@ -1,9 +1,9 @@
 # FoodLens: Recipe Analytics & Machine Learning
 
 ## Overview
+> **"What drives people to like and save recipes online?"**
 
-FoodLens is a data science project focused on large-scale recipe analytics using web scraping, machine learning, and natural language processing (NLP).
-
+The answer turned out to involve comfort food psychology, cultural identity, ingredient complexity, and the neuroscience of recipe titles.
 The project analyzes more than 10,000 recipes collected from the public website `eda.ru` to explore:
 
 * recipe popularity,
@@ -60,157 +60,6 @@ This project aims to:
 | Seaborn              | Statistical visualization           |
 | SciPy                | Statistical analysis                |
 
----
-
-# Dataset Information
-
-* Source: `eda.ru`
-* Size: 10,000+ recipes
-* Features: 15 meaningful columns
-
-The dataset includes:
-
-* nutritional values,
-* recipe categories,
-* ingredients,
-* cooking duration,
-* portion size,
-* and user engagement metrics (likes/dislikes).
-
-No API was used during data collection.
-
----
-
-# Methodology
-
-## 1. Data Collection
-
-Recipe data was collected using web scraping techniques with `Requests` and `BeautifulSoup`.
-
-The required information was stored in JSON format inside the webpage source code. JSON objects were extracted and parsed into a structured dataset.
-
----
-
-## 2. Data Preprocessing
-
-The preprocessing stage included:
-
-* duplicate removal,
-* missing value handling,
-* outlier detection,
-* data normalization,
-* ingredient parsing,
-* and feature engineering.
-
-Additional features created:
-
-* Likes Ratio
-* Calories per Portion
-* Dietary Focus
-* Time Effort Categories
-* Dish Type Categories
-
----
-
-## 3. Exploratory Data Analysis (EDA)
-
-EDA was performed to analyze:
-
-* nutritional distributions,
-* user engagement behavior,
-* cuisine popularity,
-* ingredient frequency,
-* and cooking duration patterns.
-
-### Calories Distribution
-
-![Calories Distribution](images/calories_distribution.png)
-
-### Correlation Heatmap
-
-![Correlation Heatmap](images/heatmap.png)
-
-### Cuisine Distribution
-
-![Cuisine Distribution](images/cuisine_distribution.png)
-
----
-
-## 4. Statistical Analysis
-
-Statistical methods used:
-
-* correlation analysis,
-* distribution analysis,
-* and hypothesis testing.
-
-The project investigated relationships between nutritional characteristics and user engagement metrics.
-
----
-
-## 5. Machine Learning
-
-A regression model was developed to predict calorie values using recipe-related features.
-
-### Machine Learning Workflow
-
-* Feature Selection
-* Train-Test Split
-* Model Training
-* Performance Evaluation
-
-### Results
-
-* Achieved R² Score: **0.96**
-
-### Feature Importance
-
-![Feature Importance](images/feature_importance.png)
-
----
-
-## 6. Semantic Search System
-
-An NLP-based semantic recipe search system was implemented using SentenceTransformer embeddings.
-
-Recipes were converted into vector embeddings, allowing semantic similarity comparisons between recipes instead of traditional keyword matching.
-
-### Semantic Search Example
-
-![Semantic Search](images/semantic_search.png)
-
----
-
-# Key Insights
-
-* High-calorie recipes tend to receive higher user engagement
-* Nutritional composition influences recipe popularity
-* Semantic embeddings improve recipe search relevance
-* Machine learning models effectively predict calorie values
-
----
-
-# Project Structure
-
-```bash
-recipe-analytics-ml/
-│
-├── data/
-├── images/
-├── notebooks/
-├── README.md
-├── requirements.txt
-└── recipe_analysis.ipynb
-```
-
----
-
-# Future Improvements
-
-* Deploy as a web application
-* Build a recommendation engine
-* Improve semantic search performance
-* Create interactive dashboards
 
 ---
 
@@ -219,5 +68,186 @@ recipe-analytics-ml/
 Akmeiir Amirseit
 
 Statistics and Data Science Student
+
+# 🍽️ Recipe Website Analysis
+### *What makes a recipe go viral?*
+
+> A data science project analyzing **10,000+ recipes** from [eda.rambler.ru](https://eda.rambler.ru) to uncover the hidden patterns behind likes, saves, and culinary popularity.
+
+**Team:** Dana · Akmeiir · Fazilat · Feruza
+
+---
+
+## 📌 Overview
+
+We scraped, cleaned, and analyzed a real-world recipe dataset to answer one central question:
+
+> **"What drives people to like and save recipes online?"**
+
+The answer turned out to involve comfort food psychology, cultural identity, ingredient complexity, and the neuroscience of recipe titles.
+
+---
+
+## 📂 Project Structure
+
+```
+recipe-analysis/
+│
+├── data/
+│   └── recipes_clean.csv        # Cleaned dataset (10,000+ recipes, 15 features)
+│
+├── notebooks/
+│   └── recipe_analysis.ipynb    # Main Google Colab notebook
+│
+├── presentation/
+│   └── recipe_website_analysis.pdf
+│
+└── README.md
+```
+
+---
+
+
+## Pipeline
+
+```
+Web Scraping  →  Preprocessing  →  EDA  →  Hypothesis Testing  →  ML Models  →  Semantic Search
+```
+
+### 1 Data Collection — Web Scraping
+**Source:** [eda.rambler.ru](https://eda.rambler.ru) · **Libraries:** `requests`, `BeautifulSoup`
+
+The data wasn't available in plain HTML — it was embedded as **JSON inside the page source**. The scraping pipeline:
+
+1. Extracted recipe card links from the main page
+2. Visited each recipe page individually
+3. Located and parsed the embedded JSON to extract structured fields
+
+**Result:** 10,000+ rows × 15 columns, zero null values.
+
+| Feature Category | Columns |
+|---|---|
+| Nutritional values | calories, proteins, fats, carbohydrates |
+| Recipe characteristics | cuisine, dish type, ingredients, portion size, dietary category |
+| User feedback | likes, dislikes |
+
+### 2 Preprocessing
+
+**Step 1 — Loading & Inspection**
+Examined structure, dimensions, and data types. Removed duplicate records.
+
+**Step 2 — Missing Values**
+- `Cuisine` nulls → filled with `"Unknown"`
+- Missing descriptions → filled from the `text` column
+
+**Step 3 — Cleaning & Transformation**
+- Standardized column names
+- Fixed data types (numeric / categorical conversions)
+- Transformed `Ingredients` from raw text into structured Python lists
+
+**Step 4 — Outlier Handling**
+- Identified outliers in `calories`, `fats`, `proteins`, `duration` via visualization
+- Normalized total nutritional values by portion count → more realistic per-portion data
+
+**Step 5 — Feature Engineering**
+
+| New Feature | Description |
+|---|---|
+| `Likes Ratio` | Measures user satisfaction (likes / total votes) |
+| `Calories per Portion` | More accurate nutritional metric |
+| `Dietary Focus` | Categorizes recipes: High Protein, Balanced, High Carbs, etc. |
+| `Dish Type` | Extracted from URL: breakfast, dessert, salad, etc. |
+| `Time Effort` | Grouped cooking time into Express / Standard / Time-Consuming |
+
+Ingredients were also exploded into a separate structure using `df.explode()` for per-ingredient analysis.
+
+**Step 6 — Encoding & Standardization**
+- Categorical variables (e.g. `Cuisine`) encoded to numerical format for ML
+- Numerical features scaled for consistent model performance
+
+---
+
+##  Key Findings
+
+###  Carbs Win. Always.
+High-calorie recipes get **27% more likes** on average (p = 0.003). But the surprise: it's not fat — it's **carbs** that drive engagement. Comfort foods (bread, pasta, potatoes) beat "heavy/greasy" foods every time.
+
+> *"The heart wants indulgence, but the click follows comfort and culture."*
+
+###  Culture Matters
+Italian vs. Russian cuisine t-test (p = 0.014): **Italian recipes get 36% more likes**.  
+Italian food leverages universally loved ingredients (pasta, cheese, tomato). Russian cuisine is "niche gourmet" — high barrier to entry for the average global user.
+
+**For content creators:** Post Italian for consistent growth. Post Russian for niche authority.
+
+###  The Quick & Healthy Paradox
+Low-calorie and high-protein meals are **actually faster to prepare** than high-carb/fat dishes. The myth that healthy eating takes too much time is debunked by the data.
+
+###  The 8-Ingredient Sweet Spot
+The optimal number of ingredients for maximum saves is **8**. Complexity scares people away. Correlation between ingredient count and saves: **-0.13**.
+
+Exception: recipes with 35+ ingredients (elaborate wedding/event dishes) see an unexpected spike — the "Special Occasion" effect.
+
+###  Simplicity Wins — Even in Titles
+Short recipe names drive virality. Our brains prefer **"Brownies"** over **"Artisanal Hand-Crafted Cocoa Squares."** Complexity in the title creates a measurable barrier to engagement.
+
+###  Risk vs. Reward: Polarizing Dishes
+Breakfasts and drinks are the most "controversial" dish types (highest dislikes per like). Likely reason: high expectations for "simple" categories lead to disappointment.
+
+---
+
+## Machine Learning
+
+### Model 1 — Calorie Predictor
+> *"Can we guess the calories if we only know the macros?"*
+
+| Metric | Value |
+|--------|-------|
+| R² Score | **0.96** |
+| Top Predictor | Fat (69% importance) |
+| Use Case | Instant calorie calculator for untagged recipes |
+
+### Model 2 — Semantic Recipe Search
+Built using **SentenceTransformer** to understand search *intent*, not just keywords.
+
+| Query (RU) | Top Score | Result |
+|------------|-----------|--------|
+| ПП завтрак с яйцами | 0.82 | ✅ Excellent |
+| быстрый ужин с курицей | 0.81 | ✅ Perfect |
+| завтрак для детей | 0.72 | ✅ Strong |
+
+**Lesson learned:** AI is only as good as the diversity of the training data — the model revealed a data gap weighted toward drinks/bar menus.
+
+---
+
+## 💡 Recommendations
+
+**For Content Creators & Chefs:**
+- Use the **8-ingredient rule** — simplicity converts
+- **Rebrand healthy options** to mimic comfort-food aesthetics
+- Keep **recipe titles short** — every extra word loses engagement
+
+**For Platform Developers (eda.rambler.ru):**
+- Implement **automated calorie tagging** using the ML model
+- Add **dynamic search filtering** (by time, dietary focus)
+- Build **personalization** based on cuisine affinity
+
+---
+
+## 📊 Visualizations
+
+The notebook includes:
+- Distribution of avg. carbs & fats by cuisine
+- Average vs. Maximum likes by dietary focus (`High Carbs`, `Balanced`, `High Fat`, etc.)
+- Which cuisines drive the "High Fat" category (European, French, Russian stand out)
+- Heatmap: Preparation speed × Nutritional focus
+- Scatter plot: Title length vs. saves
+- Saves vs. number of ingredients (with confidence bands)
+- Ingredient Impact: Popularity drivers vs. engagement killers
+- Calorie prediction: actual vs. predicted scatter plot
+
+---
+
+
 
 
