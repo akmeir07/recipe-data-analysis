@@ -173,7 +173,74 @@ Short recipe names drive virality. Our brains prefer **"Brownies"** over **"Arti
 Breakfasts and drinks are the most "controversial" dish types (highest dislikes per like). Likely reason: high expectations for "simple" categories lead to disappointment.
 
 ---
+##  Visualizations
+![All Distributions](images/all_distributions.png)
 
+> The dataset spans a wide range of calorie counts and macro distributions. Most recipes cluster in moderate calorie ranges, with a long right tail — a small number of dishes are extremely calorie-dense.
+ 
+---
+
+**Do high-carb or high-fat diets get more likes?**
+
+![Dietary Focus — Average Popularity](images/dietary_focus_avg_popularity.png)
+![Dietary Focus — Max Popularity](images/dietary_focus_popularity.png)
+
+> High-Carb recipes lead both in average and maximum likes. High-Fat recipes consistently underperform — suggesting users prefer comfort carbs over rich, greasy food. Social media engagement favors indulgence, but specifically the *carb* kind.
+
+---
+
+**Which cuisines drive the "High Fat" category?**
+
+![High Fat Cuisines](images/high_fat_cuisines.png)
+
+> European, French, and Russian cuisines dominate the high-fat segment. Despite the richness of these dishes, they receive lower average engagement — supporting the idea that high-fat food is "niche gourmet" rather than universally appealing.
+
+---
+
+**How many ingredients do the most popular cuisines use on average?**
+
+![Ingredients by Cuisine](images/ingredients_by_cuisine.png)
+
+> The top 5 cuisines by likes all average between 8–10 ingredients. This isn't a coincidence — it reflects the sweet spot between complexity and approachability.
+**Does adding more ingredients hurt or help a recipe's saves?**
+
+![Ingredients vs Saves](images/ingredients_vs_saves.png)
+
+> Saves peak around **8 ingredients** and decline steadily beyond that (correlation: -0.13). The one exception is a dramatic spike at 35+ ingredients — a single elaborate recipe, likely for a special occasion like a wedding dish.
+
+---
+
+**Does a recipe's title length affect how many saves it gets?**
+
+![Title Length vs Saves](images/title_length_vs_saves.png)
+
+> Shorter titles clearly concentrate the highest-save recipes. As title length grows, save counts drop and spread thins out. The data supports a simple rule: if you can say it in fewer words, do it.
+
+---
+
+**Which ingredients drive popularity — and which kill it?**
+
+![Ingredient Impact](images/ingredient_impact.png)
+
+> Ingredients like dark chocolate, baking soda, lasagna sheets, and pasta show massive positive lift on likes. On the negative side, niche or unfamiliar ingredients consistently reduce engagement. Many of the top positive ingredients are staples of Italian cuisine.
+
+---
+
+**Which dish types are the most controversial (high dislikes per like)?**
+
+![Controversial Dishes](images/controversial_dishes.png)
+
+> Breakfasts and drinks receive the most dislikes relative to likes. The likely reason: users have high expectations for "simple" categories, and even small misses lead to negative feedback.
+
+---
+
+**Is there a pattern between preparation speed and nutritional focus?**
+
+![Heatmap](images/heatmap.png)
+
+> Low-calorie and high-protein recipes cluster in the "Express" preparation category, while high-carb dishes dominate "Standard" time. This debunks the myth that healthy food takes longer to prepare.
+
+---
 ## Machine Learning
 
 ### Model 1 — Calorie Predictor
@@ -194,7 +261,12 @@ Built using **SentenceTransformer** to understand search *intent*, not just keyw
 | быстрый ужин с курицей | 0.81 | Perfect |
 | завтрак для детей | 0.72 |  Strong |
 
-**Lesson learned:** AI is only as good as the diversity of the training data — the model revealed a data gap weighted toward drinks/bar menus.
+**How well does the semantic search system understand user intent?**
+
+![Semantic Search Results](images/ml_recipe_recommendation_results.png)
+
+> Queries in natural Russian (e.g. "quick dinner with chicken") return highly relevant results with scores above 0.80. The system understands meaning, not just keywords — though a data gap toward drinks/bar menus was revealed during testing.
+
 
 ---
 
@@ -212,25 +284,11 @@ Built using **SentenceTransformer** to understand search *intent*, not just keyw
 
 ---
 
-##  Visualizations
-
-The notebook includes:
-- Distribution of avg. carbs & fats by cuisine
-- Average vs. Maximum likes by dietary focus (`High Carbs`, `Balanced`, `High Fat`, etc.)
-- Which cuisines drive the "High Fat" category (European, French, Russian stand out)
-- Heatmap: Preparation speed × Nutritional focus
-- Scatter plot: Title length vs. saves
-- Saves vs. number of ingredients (with confidence bands)
-- Ingredient Impact: Popularity drivers vs. engagement killers
-- Calorie prediction: actual vs. predicted scatter plot
+##  
 
 ---
 
 # Author
 
 Akmeiir Amirseit
-
-Statistics and Data Science Student
-
-
 
